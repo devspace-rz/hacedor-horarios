@@ -9,7 +9,7 @@ const ofertaAcademica = {
     { id: "aero_1_6", nombre: "Química Básica", semestre: "1° Semestre" },
     
     // 2° Semestre
-    { id: "aero_2_1", nombre: "POO", semestre: "2°Semestre" },
+    { id: "aero_2_1", nombre: "POO", semestre: "2° Semestre" },
     { id: "aero_2_2", nombre: "Humanidades 2", semestre: "2°  Semestre" },
     { id: "aero_2_3", nombre: "Ecuaciones Diferenciales", semestre: "2° Semestre" },
     { id: "aero_2_4", nombre: "Quimica Aplicada", semestre: "2° Semestre" },
@@ -53,7 +53,7 @@ const ofertaAcademica = {
     { id: "aero_6_6", nombre: "Sistemas Electronicos Digitales", semestre: "6° Semestre" },
     { id: "aero_6_7", nombre: "Ingenieria de operaciones", semestre: "6° Semestre" },
     { id: "aero_6_8", nombre: "Meteorologia", semestre: "6° Semestre" },
-    { id: "aero_6_9", nombre: "Optativa I: Aeropuertos", semestre: "6° Semestre (operacion del transporte aereo)" },
+    { id: "aero_6_9", nombre: "Optativa I: Aeropuertos", semestre: "6° Semestre " },
     { id: "aero_6_10", nombre: "Sistemas en Aeronaves", semestre: "6° Semestre" },
   // 7° Semestre
     { id: "aero_7_1", nombre: "Dinámica de Vuelo", semestre: "7° Semestre" },
