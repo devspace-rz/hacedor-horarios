@@ -10,7 +10,7 @@ const ofertaAcademica = {
     
     // 2° Semestre
     { id: "aero_2_1", nombre: "POO", semestre: "2° Semestre" },
-    { id: "aero_2_2", nombre: "Humanidades 2", semestre: "2°  Semestre" },
+    { id: "aero_2_2", nombre: "Humanidades 2", semestre: "2° Semestre" },
     { id: "aero_2_3", nombre: "Ecuaciones Diferenciales", semestre: "2° Semestre" },
     { id: "aero_2_4", nombre: "Quimica Aplicada", semestre: "2° Semestre" },
     { id: "aero_2_5", nombre: "Cálculo Vectorial", semestre: "2° Semestre" },
