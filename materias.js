@@ -186,18 +186,6 @@ const ofertaAcademica = {
   
   ],
 
-  "Ingeniería Industrial - Plan Anterior": [
-    // 2° Semestre (Equivalentes segun tira 2IX)
-    { id: "ind_ant_2_1", nombre: "Química Industrial", semestre: "2° Semestre" },
-    { id: "ind_ant_2_2", nombre: "Probabilidad y Estadística", semestre: "2° Semestre" },
-    { id: "ind_ant_2_3", nombre: "Cálculo Integral", semestre: "2° Semestre" },
-    { id: "ind_ant_2_4", nombre: "Economía Industrial", semestre: "2° Semestre" },
-    // Semestres Avanzados
-    { id: "ind_ant_A_1", nombre: "Procesos de Manufactura", semestre: "Semestre Avanzado" },
-    { id: "ind_ant_A_2", nombre: "Sistemas de Gestión", semestre: "Semestre Avanzado" },
-    { id: "ind_ant_A_3", nombre: "Optativa III: Auditoría de Calidad", semestre: "Semestre Avanzado" },
-    { id: "ind_ant_A_4", nombre: "Optativa III: Automatización", semestre: "Semestre Avanzado" }
-  ],
 
   "Ingeniería en Biotecnología - Plan 2006": [
     // Semestres Intermedios/Avanzados
