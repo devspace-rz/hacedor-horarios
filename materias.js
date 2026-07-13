@@ -187,31 +187,88 @@ const ofertaAcademica = {
   ],
 
 
-  "Ingeniería en Biotecnología - Plan 2006": [
-    // Semestres Intermedios/Avanzados
-    { id: "biot06_1", nombre: "Administración de la Producción", semestre: "Semestre Avanzado" },
-    { id: "biot06_2", nombre: "Planeación Estratégica", semestre: "Semestre Avanzado" },
-    { id: "biot06_3", nombre: "Biofluidez y Fluidos", semestre: "Semestre Avanzado" },
-    { id: "biot06_4", nombre: "Biosólidos y Fluidos", semestre: "Semestre Avanzado" },
-    { id: "biot06_5", nombre: "Ingeniería Celular", semestre: "Semestre Avanzado" },
-    { id: "biot06_6", nombre: "Diseño de Plantas", semestre: "Semestre Avanzado" },
-    { id: "biot06_7", nombre: "Biotecnología de Cultivos Celulares", semestre: "Semestre Avanzado" },
-    { id: "biot06_8", nombre: "Optativa I: Tópicos Selectos en Biología", semestre: "Semestre Avanzado" },
-    { id: "biot06_9", nombre: "Electiva III", semestre: "Semestre Avanzado" }
-  ],
-
   "Ingeniería en Biotecnología - Plan 2023": [
     // 1° Semestre
-    { id: "biot23_1_1", nombre: "Biología Celular", semestre: "1° Semestre" },
+    { id: "biot23_1_1", nombre: "Biologia celular", semestre: "1° Semestre" },
     { id: "biot23_1_2", nombre: "Bioingeniería y Sociedad", semestre: "1° Semestre" },
     { id: "biot23_1_3", nombre: "Cálculo Diferencial e Integral", semestre: "1° Semestre" },
-    { id: "biot23_1_4", nombre: "Programación Computacional", semestre: "1° Semestre" },
+    { id: "biot23_1_4", nombre: "Programación", semestre: "1° Semestre" },
     { id: "biot23_1_5", nombre: "Química General", semestre: "1° Semestre" },
-    // 8° Semestre
-    { id: "biot23_8_1", nombre: "Laboratorio de Bioseparaciones", semestre: "8° Semestre" },
-    { id: "biot23_8_2", nombre: "Análisis y Síntesis de Bioprocesos", semestre: "8° Semestre" },
-    { id: "biot23_8_3", nombre: "Tecnología y Producción de Biomoléculas", semestre: "8° Semestre" },
-    { id: "biot23_8_4", nombre: "Optativa II: Biotecnología de Células Animales", semestre: "8° Semestre" }
+    { id: "biot23_1_5", nombre: "Comunicacion y sistemas de informacion", semestre: "1° Semestre" },
+    { id: "biot23_1_5", nombre: "Fisica del movimiento Aplicada", semestre: "1° Semestre" },
+    { id: "biot23_1_5", nombre: "Algebra lineal", semestre: "1° Semestre" },
+
+    
+
+
+  // ------------------- 2DO SEMESTRE -------------------
+    { id: "biot23_2_1", nombre: "Ética", semestre: "2° Semestre" },
+    { id: "biot23_2_2", nombre: "Planeación Estratégica", semestre: "2° Semestre" },
+    { id: "biot23_2_3", nombre: "Física de la Energía", semestre: "2° Semestre" },
+    { id: "biot23_2_4", nombre: "Cálculo Vectorial", semestre: "2° Semestre" },
+    { id: "biot23_2_5", nombre: "Inglés I", semestre: "2° Semestre" },
+    { id: "biot23_2_6", nombre: "Laboratorio de Microbiología", semestre: "2° Semestre" },
+    { id: "biot23_2_7", nombre: "Microbiología", semestre: "2° Semestre" },
+    { id: "biot23_2_8", nombre: "Termodinámica", semestre: "2° Semestre" },
+    { id: "biot23_2_9", nombre: "Química Orgánica", semestre: "2° Semestre" },
+
+
+    // ------------------- 3ER SEMESTRE -------------------
+    { id: "biot23_3_1", nombre: "Métodos Analíticos e Instrumentales", semestre: "3° Semestre" },
+    { id: "biot23_3_2", nombre: "Gestión, Organización y Dirección Empresaria", semestre: "3° Semestre" },
+    { id: "biot23_3_3", nombre: "Ecuaciones Diferenciales", semestre: "3° Semestre" },
+    { id: "biot23_3_4", nombre: "Laboratorio de Bioquímica", semestre: "3° Semestre" },
+    { id: "biot23_3_5", nombre: "Inglés II", semestre: "3° Semestre" },
+    { id: "biot23_3_6", nombre: "Métodos Numéricos", semestre: "3° Semestre" },
+    { id: "biot23_3_7", nombre: "Balance de Materia y Energía", semestre: "3° Semestre" },
+    { id: "biot23_3_8", nombre: "Bioquimica", semestre: "3° Semestre" },
+
+
+    // ------------------- 4TO SEMESTRE -------------------
+    { id: "biot23_4_1", nombre: "Laboratorio de Ingeniería Enzimática", semestre: "4° Semestre" },
+    { id: "biot23_4_2", nombre: "Mecánica de Fluidos y Sólidos ", semestre: "4° Semestre" },
+    { id: "biot23_4_3", nombre: "Dinámica y Control e Instrumentación", semestre: "4° Semestre" },
+    { id: "biot23_4_4", nombre: "Estadística", semestre: "4° Semestre" },
+    { id: "biot23_4_5", nombre: "Fenómenos de Transporte", semestre: "4° Semestre" },
+    { id: "biot23_4_6", nombre: "Fisicoquímica", semestre: "4° Semestre" },
+    { id: "biot23_4_7", nombre: "Inglés III", semestre: "4° Semestre" },
+    { id: "biot23_4_8", nombre: "Ingeniería Enzimática", semestre: "4° Semestre" },
+    { id: "biot23_4_9", nombre: "Biología Molecular", semestre: "4° Semestre" },
+
+    // ------------------- 5TO SEMESTRE -------------------
+    { id: "biot23_5_1", nombre: "Inmunología", semestre: "5° Semestre" },
+    { id: "biot23_5_2", nombre: "Protección Ambiental y Desarrollo Sostenible", semestre: "5° Semestre" },
+    { id: "biot23_5_3", nombre: "Laboratorio Ingeniería Genética ", semestre: "5° Semestre" },
+    { id: "biot23_5_4", nombre: "Sistemas de Gestión de Calidad ", semestre: "5° Semestre" },
+    { id: "biot23_5_5", nombre: "Electromecánica de Procesos", semestre: "5° Semestre" },
+    { id: "biot23_5_6", nombre: "Procesos de Transferencia de Calor", semestre: "5° Semestre" },
+    { id: "biot23_5_7", nombre: "Administración de la Producción", semestre: "5° Semestre"}, 
+    { id: "biot23_5_8", nombre: "Bioseparaciones Mecánicas", semestre: "5° Semestre"}, 
+    { id: "biot23_5_9", nombre: "Electromecánica de Procesos", semestre: "5° Semestre"}, 
+    { id: "biot23_5_10", nombre: "Laboratorio de Bioingeniería", semestre: "5° Semestre"}, 
+
+
+    // ------------------- 6TO SEMESTRE -------------------
+    { id: "biot23_6_1", nombre: "Ingeniería de Biorreactores", semestre: "6° Semestre" },
+    { id: "biot23_6_2", nombre: "Laboratorio de Biorreactores", semestre: "6° Semestre" },
+    { id: "biot23_6_3", nombre: "Ingeniería Metabólica", semestre: "6° Semestre" },
+    { id: "biot23_6_4", nombre: "Optativa I: Biotecnología Industrial ", semestre: "6° Semestre" },
+    { id: "biot23_6_5", nombre: "Administración de Proyecto", semestre: "6° Semestre" },
+    { id: "biot23_6_6", nombre: "Bioseparaciones Fluido Fluido", semestre: "6° Semestre" },
+    { id: "biot23_6_7", nombre: "Bioseparaciones Solido Fluido", semestre: "6° Semestre" },
+
+    // ------------------- 7MO SEMESTRE -------------------
+    { id: "biot23_7_1", nombre: "Optativa II: Biotecnología de Células Animales", semestre: "7° Semestre" },
+    { id: "biot23_7_2", nombre: "Tecnología y Producción de Biomoléculas", semestre: "7° Semestre" },
+    { id: "biot23_7_3", nombre: "Análisis y Síntesis de Bioprocesos", semestre: "7° Semestre" },
+    { id: "biot23_7_4", nombre: "Laboratorio de Bioseparaciones", semestre: "7° Semestre" },
+    
+    
+    // ------------------- 8VO SEMESTRE -------------------
+    { id: "biot23_8_1", nombre: "Diseño de Plantas", semestre: "8° Semestre" },
+    { id: "biot23_8_2", nombre: "Formulación y Evaluación de Proyectos", semestre: "8° Semestre" },
+    { id: "biot23_8_3", nombre: "Estancia profesional", semestre: "8° Semestre" },
+  
   ],
 
   "Ingeniería Farmacéutica": [
