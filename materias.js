@@ -277,12 +277,84 @@ const ofertaAcademica = {
     { id: "farm_1_2", nombre: "Inglés I", semestre: "1° Semestre" },
     { id: "farm_1_3", nombre: "Física del Movimiento Aplicada", semestre: "1° Semestre" },
     { id: "farm_1_4", nombre: "Química General Aplicada", semestre: "1° Semestre" },
-    { id: "farm_1_5", nombre: "Programación y Taller", semestre: "1° Semestre" },
-    // 8° Semestre
+    { id: "farm_1_5", nombre: "Programación", semestre: "1° Semestre" },
+    { id: "farm_1_6", nombre: "Biologia celular", semestre: "1° Semestre" },
+    { id: "farm_1_7", nombre: "Biotecnologia y sociedad", semestre: "1° Semestre" },
+    { id: "farm_1_8", nombre: "Comunicación y Sistemas de Información ", semestre: "1° Semestre" },
+
+
+
+
+    // ------------------- 2DO SEMESTRE -------------------
+    { id: "farm_2_1", nombre: "Fisiología ", semestre: "2° Semestre" },
+    { id: "farm_2_2", nombre: "Álgebra vectorial", semestre: "2° Semestre" },
+    { id: "farm_2_3", nombre: "Estadística", semestre: "2° Semestre" },
+    { id: "farm_2_4", nombre: "Termodinámica", semestre: "2° Semestre" },
+    { id: "farm_2_5", nombre: "Etica", semestre: "2° Semestre" },
+    { id: "farm_2_6", nombre: "Química Bioorgánica ", semestre: "2° Semestre" },
+    { id: "farm_2_7", nombre: "Inglés II", semestre: "2° Semestre" },
+
+    // ------------------- 3ER SEMESTRE -------------------
+    { id: "farm_3_1", nombre: "Ecuaciones Diferenciales", semestre: "3° Semestre" },
+    { id: "farm_3_2", nombre: "Fisicoquímica", semestre: "3° Semestre" },
+    { id: "farm_3_3", nombre: "Química Heterocíclica", semestre: "3° Semestre" },
+    { id: "farm_3_4", nombre: "Bioquímica Farmacéutica", semestre: "3° Semestre" },
+    { id: "farm_3_5", nombre: "Aplicaciones Matemáticas", semestre: "3° Semestre" },
+    { id: "farm_3_6", nombre: "Balance de Materia y Energía", semestre: "3° Semestre" },
+    { id: "farm_3_7", nombre: "Inglés III", semestre: "3° Semestre" },
+   
+
+    // ------------------- 4TO SEMESTRE -------------------
+    { id: "farm_4_1", nombre: "Métodos Analíticos e Instrumentale", semestre: "4° Semestre" },
+    { id: "farm_4_2", nombre: "Métodos Numéricos", semestre: "4° Semestre" },
+    { id: "farm_4_3", nombre: "Legislación Farmacéutica", semestre: "4° Semestre" },
+    { id: "farm_4_4", nombre: "Microbiología Farmacéutica", semestre: "4° Semestre" },
+    { id: "farm_4_5", nombre: "Optativa I: Diseño de Experimentos Farmacéuticos", semestre: "4° Semestre" },
+    { id: "farm_4_6", nombre: "Optativa I: Estudios de Mercado", semestre: "4° Semestre" },
+    { id: "farm_4_7", nombre: "Fenómenos de Transporte", semestre: "4° Semestre" },
+    { id: "farm_4_8", nombre: "Elementos para el Diseño I ", semestre: "4° Semestre" },
+    { id: "farm_4_9", nombre: "Diseño de farmacos", semestre: "4° Semestre" },
+    { id: "farm_4_10", nombre: "Sistemas de Calidad ", semestre: "4° Semestre" },
+
+    // ------------------- 5TO SEMESTRE -------------------
+    { id: "farm_5_1", nombre: "Biotecnología de Cultivos Celulares", semestre: "5° Semestre" },
+    { id: "farm_5_2", nombre: "Tecnología Farmacéutica I ", semestre: "5° Semestre" },
+    { id: "farm_5_3", nombre: "Mecánica de Fluidos y Sólidos", semestre: "5° Semestre" },
+    { id: "farm_5_4", nombre: "Elementos para el Diseño II ", semestre: "5° Semestre" },
+    { id: "farm_5_5", nombre: "Farmacología", semestre: "5° Semestre" },
+    { id: "farm_5_6", nombre: "Laboratorio de Bioingeniería", semestre: "5° Semestre" },
+    { id: "farm_5_7", nombre: "Procesos de Transferencia de Calor", semestre: "5° Semestre" },
+    { id: "farm_5_8", nombre: "Relaciones Laborales ", semestre: "5° Semestre" },
+
+    // ------------------- 6TO SEMESTRE -------------------
+    { id: "farm_6_1", nombre: "Tecnología Farmacéutica II", semestre: "6° Semestre" },
+    { id: "farm_6_2", nombre: "Biotecnología Farmacéutica", semestre: "6° Semestre" },
+    { id: "farm_6_3", nombre: "Validación de Procesos Farmacéuticos ", semestre: "6° Semestre" },
+    { id: "farm_6_4", nombre: "Bioseparaciones Mecánicas", semestre: "6° Semestre" },
+    { id: "farm_6_5", nombre: "Ingeniería de Biorreactore", semestre: "6° Semestre" },
+    { id: "farm_6_6", nombre: "Administración de la Producción ", semestre: "6° Semestre" },
+    { id: "farm_6_7", nombre: "Optativa II: Elementos para el Diseño III", semestre: "6° Semestre" },
+    { id: "farm_6_8", nombre: "Optativa II: Ingeniería de Fermentaciones", semestre: "6° Semestre" },
+    { id: "farm_6_9", nombre: "Proyecto Terminal I", semestre: "6° Semestre" },
+
+    // ------------------- 7MO SEMESTRE -------------------
+    { id: "farm_7_1", nombre: "Laboratorio de Bioseparaciones ", semestre: "7° Semestre" },
+    { id: "farm_7_2", nombre: "Proyecto Terminal II", semestre: "7° Semestre" },
+    { id: "farm_7_3", nombre: "Administración de Proyectos", semestre: "7° Semestre" },
+    { id: "farm_7_4", nombre: "Optativa III: Productos Naturales", semestre: "7° Semestre" },
+    { id: "farm_7_5", nombre: "Bioseparaciones Sólido-Fluido", semestre: "7° Semestre" },
+    { id: "farm_7_6", nombre: "Electiva I", semestre: "7° Semestre" },
+    { id: "farm_7_7", nombre: "Síntesis y Análisis de Bioprocesos", semestre: "7° Semestre" },
+    { id: "farm_7_7", nombre: "Optativa III: Liofilización de Células y Fármacos", semestre: "7° Semestre" },
+
+
+    // ------------------- 8VO SEMESTRE -------------------
     { id: "farm_8_1", nombre: "Diseño y Estabilidad de Medicamentos", semestre: "8° Semestre" },
-    { id: "farm_8_2", nombre: "Ingeniería de Productos Biológicos", semestre: "8° Semestre" },
-    { id: "farm_8_3", nombre: "Diseño de Plantas (Taller)", semestre: "8° Semestre" },
-    { id: "farm_8_4", nombre: "Biotecnología de la Respuesta Inmune", semestre: "8° Semestre" }
+    { id: "farm_8_2", nombre: "Ingeniería de Productos Biológicos ", semestre: "8° Semestre" },
+    { id: "farm_8_3", nombre: "Diseño de Plantas", semestre: "8° Semestre" },
+    { id: "farm_8_4", nombre: "Biotecnología de la Respuesta Inmune", semestre: "8° Semestre" },
+    { id: "farm_8_5", nombre: "Proyecto Terminal III", semestre: "8° Semestre" },
+   
   ],
 
   "Ingeniería en Sistemas Automotrices": [
@@ -293,8 +365,71 @@ const ofertaAcademica = {
     { id: "auto_1_4", nombre: "Física Clásica", semestre: "1° Semestre" },
     { id: "auto_1_5", nombre: "Cálculo Diferencial e Integral", semestre: "1° Semestre" },
     { id: "auto_1_6", nombre: "Química Básica", semestre: "1° Semestre" },
+    // ------------------- 2DO SEMESTRE -------------------
+    { id: "auto_2_1", nombre: "Métodos Numéricos", semestre: "2° Semestre" },
+    { id: "auto_2_2", nombre: "Humanidades II:", semestre: "2° Semestre" },
+    { id: "auto_2_3", nombre: "Electricidad y Magnetismo ", semestre: "2° Semestre" },
+    { id: "auto_2_4", nombre: "Ecuaciones Diferenciales ", semestre: "2° Semestre" },
+    { id: "auto_2_5", nombre: "Química Aplicada", semestre: "2° Semestre" },
+    { id: "auto_2_6", nombre: "Cálculo Vectorial", semestre: "2° Semestre" },
+   
+
+    // ------------------- 3ER SEMESTRE -------------------
+    { id: "auto_3_1", nombre: "Análisis de Circuitos de CD y CA", semestre: "3° Semestre" },
+    { id: "auto_3_2", nombre: "Humanidades III:", semestre: "3° Semestre" },
+    { id: "auto_3_3", nombre: "Estática", semestre: "3° Semestre" },
+    { id: "auto_3_4", nombre: "Termodinámica I", semestre: "3° Semestre" },
+    { id: "auto_3_5", nombre: "Mecánica de Materiales I", semestre: "3° Semestre" },
+    { id: "auto_3_6", nombre: "Introduccion a la ciencia de los Materiales", semestre: "3° Semestre" },
+    
+
+    // ------------------- 4TO SEMESTRE -------------------
+    { id: "auto_4_1", nombre: "Electrónica I", semestre: "4° Semestre" },
+    { id: "auto_4_2", nombre: "Termodinámica II ", semestre: "4° Semestre" },
+    { id: "auto_4_3", nombre: "Oleoneumática", semestre: "4° Semestre" },
+    { id: "auto_4_4", nombre: "Probabilidad y Estadística", semestre: "4° Semestre" },
+    { id: "auto_4_5", nombre: "Dinámica", semestre: "4° Semestre" },
+    { id: "auto_4_6", nombre: "Resistencia de los Materiales I ", semestre: "4° Semestre" },
+    
+
+    // ------------------- 5TO SEMESTRE -------------------
+    { id: "auto_5_1", nombre: "Metrología y Normalización", semestre: "5° Semestre" },
+    { id: "auto_5_2", nombre: "Elementos Mecánicos Automotrices ", semestre: "5° Semestre" },
+    { id: "auto_5_3", nombre: "Sistemas Automotrices ", semestre: "5° Semestre" },
+    { id: "auto_5_4", nombre: "Transferencia de Calor", semestre: "5° Semestre" },
+    { id: "auto_5_5", nombre: "Modelado y Simulación Asistido por Computadora", semestre: "5° Semestre" },
+    { id: "auto_5_6", nombre: "Electricidad y Electrónica Automotriz", semestre: "5° Semestre" },
+    
+
+    // ------------------- 6TO SEMESTRE -------------------
+    { id: "auto_6_1", nombre: "Dinámica del Vehículo ", semestre: "6° Semestre" },
+    { id: "auto_6_2", nombre: "Tren Motriz", semestre: "6° Semestre" },
+    { id: "auto_6_3", nombre: "Diseño Automotriz", semestre: "6° Semestre" },
+    { id: "auto_6_4", nombre: "Procesos de Manufactura Automotriz", semestre: "6° Semestre" },
+    { id: "auto_6_5", nombre: "Sistemas de Suspensión, Dirección y Frenos", semestre: "6° Semestre" },
+    { id: "auto_6_6", nombre: "Motores de Combustión Interna", semestre: "6° Semestre" },
+  
+
+    // ------------------- 7MO SEMESTRE -------------------
+    { id: "auto_7_1", nombre: "Optativa II: Ingeniería de Autopartes", semestre: "7° Semestre" },
+    { id: "auto_7_2", nombre: "Optativa III: Métodos de Fabricación", semestre: "7° Semestre" },
+    { id: "auto_7_3", nombre: "Ingeniería Ambiental Automotriz ", semestre: "7° Semestre" },
+    { id: "auto_7_4", nombre: "Optativa II: Ingeniería de Autopartes", semestre: "7° Semestre" },
+    { id: "auto_7_5", nombre: "_Humanidades IV", semestre: "7° Semestre" },
+    { id: "auto_7_6", nombre: "Tópicos Selectos de Ingeniería I: Ingeniería de Manufactura Automotriz I", semestre: "7° Semestre" },
+    { id: "auto_7_7", nombre: "Optativa I: Técnicas de Mecanizado", semestre: "7° Semestre" },
+    
+
+    // ------------------- 8VO SEMESTRE -------------------
+    { id: "auto_8_1", nombre: "Optativa V: Diseño Herramental Automotriz", semestre: "8° Semestre" },
+    { id: "auto_8_2", nombre: "Tópicos Selectos de Ingenieria II: Ingeniería de Manufactura Automotriz II ", semestre: "8° Semestre" },
+    { id: "auto_8_3", nombre: "Optativa IV: Sistemas Flexibles de Manufactura", semestre: "8° Semestre" },
+    { id: "auto_8_4", nombre: "Optativa VI: Robótica Automotriz", semestre: "8° Semestre" },
+    { id: "auto_8_5", nombre: "Humanidades V", semestre: "8° Semestre" },
+    { id: "auto_8_6", nombre: "Evaluación Económica de Proyectos ", semestre: "8° Semestre" },
+    
     // 9° Semestre
     { id: "auto_9_1", nombre: "Proyecto Integrador", semestre: "9° Semestre" },
-    { id: "auto_9_2", nombre: "Optativa VI: Robótica Automotriz", semestre: "9° Semestre" }
+   
   ]
 };
