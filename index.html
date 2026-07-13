@@ -3,337 +3,205 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generador de Horarios - UPIIG</title>
+  <title>Armador de Horarios - UPIIG</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
-    /* --- ESTILOS GENERALES Y LAYOUT --- */
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f6f9;
-      margin: 0;
-      padding: 20px;
-      color: #333;
-    }
-
-    h1 {
-      text-align: center;
-      color: #003366;
-      margin-bottom: 25px;
-    }
-
-    .controles {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 25px;
-      flex-wrap: wrap;
-    }
-
-    select, button {
-      padding: 10px 15px;
-      font-size: 15px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      outline: none;
-    }
-
-    button {
-      background-color: #d9534f;
-      color: white;
-      cursor: pointer;
-      border: none;
-      transition: background 0.2s;
-    }
-
-    button:hover {
-      background-color: #c9302c;
-    }
-
-    .workspace {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 20px;
-    }
-
-    /* --- BANCO DE MATERIAS (IZQUIERDA) --- */
-    .banco-materias {
-      background: white;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      max-height: 75vh;
-      overflow-y: auto;
-    }
-
-    .banco-materias h3 {
-      margin-top: 0;
-      border-bottom: 2px solid #003366;
-      padding-bottom: 8px;
-      color: #003366;
-    }
-
-    .materia-card {
-      background: #eef2f7;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-left: 4px solid #003366;
-      border-radius: 4px;
-      cursor: grab;
-      font-size: 13px;
-      font-weight: 500;
-      transition: transform 0.15s;
-    }
-
-    .materia-card:active {
-      cursor: grabbing;
-      transform: scale(0.98);
-    }
-
-    /* --- SUPER OPTIMIZACIÓN CELULAR (DERECHA) --- */
-    .contenedor-horario-responsivo {
-      width: 100%;
-      overflow-x: auto; /* Activa el desplazamiento lateral con el dedo en celular */
-      -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS y Android */
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
-    #filas-horario {
-      display: grid;
-      grid-template-columns: 100px repeat(5, 1fr); /* Horas + 5 Días de la semana */
-      min-width: 100%; /* Por defecto en PC abarca todo */
-    }
-
-    .celda {
-      border: 1px solid #e2e8f0;
-      padding: 10px;
-      min-height: 60px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-size: 13px;
-    }
-
-    .encabezado {
-      background-color: #003366;
-      color: white;
-      font-weight: bold;
-      min-height: 40px;
-    }
-
-    .hora-col {
-      background-color: #f8fafc;
-      font-weight: bold;
-      color: #64748b;
-    }
-
-    /* --- DISEÑO DE MATERIA YA LNEADA EN EL HORARIO --- */
-    .materia-asignada {
-      background-color: #d1e7dd;
-      color: #0f5132;
-      border: 1px dashed #badbcc;
-      border-radius: 4px;
-      width: 100%;
-      height: 100%;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 4px;
-      position: relative;
-    }
-
-    .btn-borrar {
-      background: none;
-      border: none;
-      color: #dc3545;
-      font-size: 12px;
-      cursor: pointer;
-      font-weight: bold;
-      padding: 2px;
-      margin-top: 4px;
-      align-self: center;
-    }
-
-    /* --- RESPONSIVE MEDIA QUERIES (BREAKPOINT DE CELULAR) --- */
-    @media (max-width: 900px) {
-      .workspace {
-        grid-template-columns: 1fr; /* Apila el banco de materias arriba del horario */
-      }
-      
-      .banco-materias {
-        max-height: 250px;
-      }
-
-      #filas-horario {
-        /* Forzamos que la cuadrícula mida mínimo 800px de ancho en pantallas chicas.
-           Esto evita que las columnas colapsen y empalmen los nombres de las materias. */
-        min-width: 800px; 
-      }
-
-      .celda-materia-nombre {
-        white-space: nowrap;       /* Mantiene el texto en un solo renglón */
-        overflow: hidden;          /* Recorta lo sobrante */
-        text-overflow: ellipsis;   /* Agrega los tres puntitos (...) */
-        width: 100%;
-        max-width: 120px;          /* Espacio seguro por columna */
-      }
-    }
+    .celda-hora { min-height: 85px; }
   </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 font-sans h-screen flex flex-col overflow-hidden">
 
-  <h1>Simulador de Horarios UPIIG</h1>
+  <header class="bg-slate-900 border-b border-slate-800 p-4 flex flex-wrap items-center justify-between gap-4 h-16 shrink-0">
+    <div class="flex items-center gap-4">
+      <h1 class="text-xl font-bold text-cyan-400">Horarios UPIIG</h1>
+      <div class="flex items-center gap-2">
+        <label class="text-xs font-medium text-slate-400">Carrera actual:</label>
+        <select id="selector-carrera" class="p-2 bg-slate-800 rounded border border-slate-700 text-sm text-white focus:outline-none focus:border-cyan-500">
+          </select>
+      </div>
+    </div>
+    <button id="btn-reiniciar" class="bg-red-900/40 border border-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-xs font-semibold transition-colors cursor-pointer">
+      Limpiar Todo el Horario
+    </button>
+  </header>
 
-  <div class="controles">
-    <select id="selector-carrera">
-      <option value="Ingeniería Industrial (Plan 2022)">Ingeniería Industrial (Plan 2022)</option>
-      <option value="Ingeniería Industrial - Plan Anterior">Ingeniería Industrial - Plan Anterior</option>
-      <option value="Ingeniería Biotecnológica (Plan 2023)">Ingeniería Biotecnológica (Plan 2023)</option>
-      <option value="Ingeniería Farmacéutica">Ingeniería Farmacéutica</option>
-      <option value="Ingeniería en Sistemas Automotrices">Ingeniería en Sistemas Automotrices</option>
-    </select>
-    <button id="btn-reiniciar">Limpiar Todo el Horario</button>
-  </div>
+  <div class="flex flex-1 overflow-hidden">
+    
+    <div class="w-80 bg-slate-900 border-r border-slate-800 p-4 flex flex-col h-full shrink-0">
+      <h2 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Materias Disponibles</h2>
+      
+      <div class="mb-3">
+        <label class="text-[11px] font-medium text-slate-400 block mb-1">Filtrar por bloque:</label>
+        <select id="filtro-semestre" class="w-full p-2 bg-slate-800 rounded border border-slate-700 text-xs text-white focus:outline-none focus:border-cyan-500">
+          <option value="todos">Mostrar todos los semestres</option>
+          </select>
+      </div>
 
-  <div class="workspace">
-    <div class="banco-materias">
-      <h3>Materias Disponibles</h3>
-      <div id="lista-materias"></div>
+      <div id="banco-materias" class="flex-1 overflow-y-auto space-y-2 pr-1 custom-scrollbar">
+        </div>
+      <p class="text-[10px] text-slate-500 mt-2 text-center italic shrink-0">Tip: Filtra por semestre para no perderte entre tanta materia.</p>
     </div>
 
-    <div class="contenedor-horario-responsivo">
-      <div id="filas-horario">
+    <div class="flex-1 p-6 overflow-y-auto h-full bg-slate-950">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl min-w-[850px]">
+        <div class="grid grid-cols-6 bg-slate-800 text-center font-semibold text-xs text-slate-300 py-3 border-b border-slate-700 sticky top-0 z-10">
+          <div>Hora</div>
+          <div>Lunes</div>
+          <div>Martes</div>
+          <div>Miércoles</div>
+          <div>Jueves</div>
+          <div>Viernes</div>
         </div>
+        <div id="filas-horario" class="divide-y divide-slate-800">
+          </div>
+      </div>
     </div>
   </div>
 
   <script src="materias.js"></script>
-  
   <script>
-    // Configuración global de la cuadrícula
+    const horas = [
+      "07:00 - 08:30", 
+      "08:30 - 10:00", 
+      "10:00 - 11:30", 
+      "11:30 - 13:00", 
+      "13:00 - 14:30", 
+      "14:30 - 16:00",
+      "16:00 - 17:30",
+      "17:30 - 19:00",
+      "19:00 - 20:30"
+    ];
     const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
-    const horas = ["07:00 - 08:30", "08:30 - 10:00", "10:00 - 11:30", "11:30 - 13:00", "13:00 - 14:30", "14:30 - 16:00", "16:00 - 17:30", "17:30 - 19:00"];
-
-    // Carga de estado inicial buscando en el almacenamiento local (LocalStorage)
-    let materiasAsignadas = {};
-    const horarioGuardado = localStorage.getItem('horario_upiig');
-    if (horarioGuardado) {
-      materiasAsignadas = JSON.parse(horarioGuardado);
-    }
-
+    
+    let materiasAsignadas = {}; 
     const selector = document.getElementById('selector-carrera');
-    const listaMaterias = document.getElementById('lista-materias');
-
-    // Inicializar la App
-    selector.addEventListener('change', (e) => {
-      cargarBanco(e.target.value);
+    const filtroSemestre = document.getElementById('filtro-semestre');
+    
+    // Inicializar carreras
+    Object.keys(ofertaAcademica).forEach(carrera => {
+      const opt = document.createElement('option');
+      opt.value = carrera;
+      opt.textContent = carrera;
+      selector.appendChild(opt);
     });
 
-    function cargarBanco(carrera) {
-      listaMaterias.innerHTML = "";
-      const materias = ofertaAcademica[carrera] || [];
-      
-      materias.forEach(mat => {
-        const div = document.createElement('div');
-        div.className = "materia-card";
-        div.innerText = `${mat.nombre} (${mat.semestre})`;
-        div.draggable = true;
-        div.id = mat.id;
-        
-        // Adjuntar metadatos para el arrastre
-        div.addEventListener('dragstart', (e) => {
-          e.dataTransfer.setData('text/plain', mat.id);
-          e.dataTransfer.setData('application/json', JSON.stringify(mat));
-        });
-        
-        listaMaterias.appendChild(div);
-      });
-    }
+    // Cambios de Carrera
+    selector.addEventListener('change', (e) => {
+      actualizarOpcionesFiltro(e.target.value);
+      cargarBancoMaterias(e.target.value, "todos");
+    });
 
-    function generarCuadricula() {
-      const container = document.getElementById('filas-horario');
-      container.innerHTML = "";
+    // Cambios de Filtro de Semestre
+    filtroSemestre.addEventListener('change', (e) => {
+      cargarBancoMaterias(selector.value, e.target.value);
+    });
 
-      // 1. Generar Fila de Encabezados (Días)
-      const esquina = document.createElement('div');
-      esquina.className = "celda encabezado";
-      esquina.innerText = "Hora";
-      container.appendChild(esquina);
-
-      dias.forEach(dia => {
-        const div = document.createElement('div');
-        div.className = "celda encabezado";
-        div.innerText = dia;
-        container.appendChild(div);
-      });
-
-      // 2. Generar Filas de Horas con Celdas de Destino
-      horas.forEach(hora => {
-        const celdaHora = document.createElement('div');
-        celdaHora.className = "celda hora-col";
-        celdaHora.innerText = hora;
-        container.appendChild(celdaHora);
-
-        dias.forEach(dia => {
-          const celdaId = `${dia}_${hora.replace(/ /g, "")}`;
-          const celdaDestino = document.createElement('div');
-          celdaDestino.className = "celda";
-          celdaDestino.dataset.celdaId = celdaId;
-
-          // Manejadores de Eventos Drag & Drop
-          celdaDestino.addEventListener('dragover', (e) => e.preventDefault());
-
-          celdaDestino.addEventListener('drop', (e) => {
-            e.preventDefault();
-            const matJson = e.dataTransfer.getData('application/json');
-            if (!matJson) return;
-            
-            const infoMateria = JSON.parse(matJson);
-            
-            // Asignar y Guardar en LocalStorage
-            materiasAsignadas[celdaId] = infoMateria;
-            localStorage.setItem('horario_upiig', JSON.stringify(materiasAsignadas));
-            
-            generarCuadricula();
-          });
-
-          // Si hay una materia guardada en esta posición, pintarla
-          if (materiasAsignadas[celdaId]) {
-            const mat = materiasAsignadas[celdaId];
-            celdaDestino.innerHTML = `
-              <div class="materia-asignada">
-                <span class="celda-materia-nombre">${mat.nombre}</span>
-                <button class="btn-borrar" onclick="quitarMateria('${celdaId}')">Quitar</button>
-              </div>
-            `;
-          }
-
-          container.appendChild(celdaDestino);
-        });
-      });
-    }
-
-    // Remover materia individual y actualizar almacenamiento
-    window.quitarMateria = function(celdaId) {
-      delete materiasAsignadas[celdaId];
-      localStorage.setItem('horario_upiig', JSON.stringify(materiasAsignadas));
-      generarCuadricula();
-    }
-
-    // Botón para resetear completo
     document.getElementById('btn-reiniciar').addEventListener('click', () => {
-      if (confirm("¿Estás seguro de que quieres limpiar todo tu horario planeado?")) {
+      if(confirm("¿Seguro que quieres borrar todo tu horario actual?")) {
         materiasAsignadas = {};
-        localStorage.removeItem('horario_upiig');
         generarCuadricula();
       }
     });
 
-    // Carga inicial al cargar el DOM
-    cargarBanco(selector.value);
+    // Actualizar el menú desplegable del filtro según los semestres reales que tenga la carrera
+    function actualizarOpcionesFiltro(carrera) {
+      filtroSemestre.innerHTML = '<option value="todos">Mostrar todos los semestres</option>';
+      if (!carrera || !ofertaAcademica[carrera]) return;
+
+      const semestresUnicos = [...new Set(ofertaAcademica[carrera].map(m => m.semestre))];
+      semestresUnicos.forEach(sem => {
+        const opt = document.createElement('option');
+        opt.value = sem;
+        opt.textContent = sem;
+        filtroSemestre.appendChild(opt);
+      });
+    }
+
+    // Cargar materias aplicando filtros sin alterar la UI global
+    function cargarBancoMaterias(carrera, semestreFiltro) {
+      const banco = document.getElementById('banco-materias');
+      banco.innerHTML = ""; 
+
+      if (!carrera || !ofertaAcademica[carrera]) return;
+
+      ofertaAcademica[carrera].forEach((materia, index) => {
+        // Validar filtro
+        if (semestreFiltro !== "todos" && materia.semestre !== semestreFiltro) return;
+
+        const div = document.createElement('div');
+        div.className = "p-3 bg-slate-800 rounded-lg border border-slate-700 shadow cursor-grab hover:border-cyan-500/50 transition-colors select-none shrink-0";
+        div.draggable = true;
+        div.id = `drag-${materia.id}-${index}`;
+        div.dataset.materiaInfo = JSON.stringify(materia);
+
+        div.innerHTML = `
+          <p class="text-xs font-medium text-slate-200">${materia.nombre}</p>
+          <span class="text-[9px] text-slate-400 bg-slate-700 px-1.5 py-0.5 rounded mt-1 inline-block">${materia.semestre}</span>
+        `;
+        
+        div.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', e.target.id);
+        });
+
+        banco.appendChild(div);
+      });
+    }
+
+    function generarCuadricula() {
+      const contenedorFilas = document.getElementById('filas-horario');
+      contenedorFilas.innerHTML = ""; 
+
+      horas.forEach(hora => {
+        const fila = document.createElement('div');
+        fila.className = "grid grid-cols-6 celda-hora";
+        fila.innerHTML = `<div class="flex items-center justify-center bg-slate-900/50 text-xs font-medium text-slate-400 p-2 border-r border-slate-800 text-center">${hora}</div>`;
+        
+        dias.forEach(dia => {
+          const idCelda = `${dia}-${hora}`;
+          const celda = document.createElement('div');
+          celda.className = "p-2 border-r border-slate-800 last:border-r-0 bg-slate-900/20 flex flex-col justify-center transition-colors relative group";
+          celda.id = idCelda;
+
+          if (materiasAsignadas[idCelda]) {
+            const mat = materiasAsignadas[idCelda];
+            celda.innerHTML = `
+              <div class="bg-cyan-600/20 border border-cyan-500 text-cyan-300 p-2 rounded text-center text-xs font-semibold shadow-sm w-full cursor-pointer relative group hover:bg-red-950/40 hover:border-red-500 hover:text-red-400 transition-all" 
+                   title="Haz clic para quitar de este bloque" onclick="quitarMateria('${idCelda}')">
+                <span class="block group-hover:hidden text-[11px] leading-tight">${mat.nombre}</span>
+                <span class="hidden group-hover:block font-bold">❌ Quitar</span>
+              </div>
+            `;
+          }
+
+          celda.addEventListener('dragover', (e) => e.preventDefault());
+          celda.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const idElementoArrastrado = e.dataTransfer.getData('text/plain');
+            const elementoOriginal = document.getElementById(idElementoArrastrado);
+            
+            if (!elementoOriginal) return;
+            
+            if (!materiasAsignadas[idCelda]) {
+              const infoMateria = JSON.parse(elementoOriginal.dataset.materiaInfo);
+              materiasAsignadas[idCelda] = infoMateria;
+              generarCuadricula();
+            }
+          });
+          
+          fila.appendChild(celda);
+        });
+        contenedorFilas.appendChild(fila);
+      });
+    }
+
+    function quitarMateria(idCelda) {
+      delete materiasAsignadas[idCelda];
+      generarCuadricula();
+    }
+
+    // Inicialización
+    actualizarOpcionesFiltro(selector.value);
+    cargarBancoMaterias(selector.value, "todos");
     generarCuadricula();
   </script>
 </body>
