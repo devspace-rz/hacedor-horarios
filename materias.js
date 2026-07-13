@@ -48,7 +48,7 @@ const ofertaAcademica = {
     { id: "aero_6_2", nombre: "Estructuras de pared delgada", semestre: "6° Semestre" },
     { id: "aero_6_3", nombre: "Humanidades 4", semestre: "6° Semestre" },
     { id: "aero_6_4", nombre: "Mecanica de Vuelo", semestre: "6° Semestre" },
-    { id: "aero_6_5", nombre: "Sistemas de Motores de combustion interna", semestre: "6° Semestre" }
+    { id: "aero_6_5", nombre: "Sistemas de Motores de combustion interna", semestre: "6° Semestre" },
     { id: "aero_6_6", nombre: "Sistemas Electronicos Digitales", semestre: "6° Semestre" },
     { id: "aero_6_7", nombre: "Ingenieria de operaciones", semestre: "6° Semestre" },
     { id: "aero_6_8", nombre: "Meteorologia", semestre: "6° Semestre" },
@@ -77,20 +77,18 @@ const ofertaAcademica = {
     { id: "aero_8_3", nombre: "Optativa Aerodinámica: Diseño Aerodinámico", semestre: "8° Semestre" },
     { id: "aero_8_4", nombre: "Optativa Tecnología: Proyecto de Ingeniería o Tópicos Selectos de Ingeniería II ", semestre: "8° Semestre" },
     { id: "aero_8_5", nombre: "Planeación y Evaluación de Proyectos ", semestre: "8° Semestre" },
-    { id: "aero_8_6", nombre: "Optativa Tecnología: Aplicaciones de Software en Ingeniería ", semestre: "8° Semestre" }
-    { id: "aero_8_6", nombre: "Optativa Estructuras: Mecánica Estructural de Materiales Compuestos ", semestre: "8° Semestre" }
-    { id: "aero_8_6", nombre: "Optativa Aerodinámica: Dinámica de Fluidos Computacionales", semestre: "8° Semestre" }
-    { id: "aero_8_6", nombre: "Optativa Ingeniería Térmica II: Ingeniería de Construcción de Motores ", semestre: "8° Semestre" }
-    { id: "aero_8_6", nombre: "Optativa Estructuras II: Construcciones Aeronáuticas", semestre: "8° Semestre" }
-    { id: "aero_8_6", nombre: "Tecnología de Materiales Compuestos", semestre: "8° Semestre" }
-    { id: "aero_8_6", nombre: "Optativa IV: Rendimiento de Aeronaves ", semestre: "8° Semestre" }
-    { id: "aero_8_6", nombre: "Manufactura Aeronáutica", semestre: "8° Semestre" }
-    { id: "aero_8_6", nombre: "Sistemas de Calidad", semestre: "8° Semestre" }
-    { id: "aero_8_6", nombre: "Proyecto de Ingeniería o Tópicos Selectos de Ingeniería II: Mantenimiento de Aeronaves ", semestre: "8° Semestre" }
-    { id: "aero_8_6", nombre: "Optativa IV: Rendimientos y Pruebas de Sistemas Propulsivos", semestre: "8° Semestre" }
+    { id: "aero_8_6", nombre: "Optativa Tecnología: Aplicaciones de Software en Ingeniería ", semestre: "8° Semestre" },
+    { id: "aero_8_7", nombre: "Optativa Estructuras: Mecánica Estructural de Materiales Compuestos ", semestre: "8° Semestre" },
+    { id: "aero_8_8", nombre: "Optativa Aerodinámica: Dinámica de Fluidos Computacionales", semestre: "8° Semestre" },
+    { id: "aero_8_9", nombre: "Optativa Ingeniería Térmica II: Ingeniería de Construcción de Motores ", semestre: "8° Semestre" },
+    { id: "aero_8_10", nombre: "Optativa Estructuras II: Construcciones Aeronáuticas", semestre: "8° Semestre" },
+    { id: "aero_8_11", nombre: "Tecnología de Materiales Compuestos", semestre: "8° Semestre" },
+    { id: "aero_8_12", nombre: "Optativa IV: Rendimiento de Aeronaves ", semestre: "8° Semestre" },
+    { id: "aero_8_13", nombre: "Manufactura Aeronáutica", semestre: "8° Semestre" },
+    { id: "aero_8_14", nombre: "Sistemas de Calidad", semestre: "8° Semestre" },
+    { id: "aero_8_15", nombre: "Proyecto de Ingeniería o Tópicos Selectos de Ingeniería II: Mantenimiento de Aeronaves ", semestre: "8° Semestre" },
+    { id: "aero_8_16", nombre: "Optativa IV: Rendimientos y Pruebas de Sistemas Propulsivos", semestre: "8° Semestre" },
 
-  ]
-};
 
   ],
 
