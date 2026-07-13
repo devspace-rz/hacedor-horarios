@@ -7,43 +7,53 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
     .celda-hora { min-height: 85px; }
+    /* Personalización sutil para la barra de desplazamiento en celular */
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #334155;
+      border-radius: 4px;
+    }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans h-screen flex flex-col overflow-hidden">
+<body class="bg-slate-950 text-slate-100 font-sans md:h-screen flex flex-col md:overflow-hidden min-h-screen">
 
-  <header class="bg-slate-900 border-b border-slate-800 p-4 flex flex-wrap items-center justify-between gap-4 h-16 shrink-0">
-    <div class="flex items-center gap-4">
+  <header class="bg-slate-900 border-b border-slate-800 p-4 flex flex-wrap items-center justify-between gap-4 md:h-16 shrink-0">
+    <div class="flex items-center gap-4 flex-wrap">
       <h1 class="text-xl font-bold text-cyan-400">Horarios UPIIG</h1>
       <div class="flex items-center gap-2">
         <label class="text-xs font-medium text-slate-400">Carrera actual:</label>
         <select id="selector-carrera" class="p-2 bg-slate-800 rounded border border-slate-700 text-sm text-white focus:outline-none focus:border-cyan-500">
-          </select>
+        </select>
       </div>
     </div>
-    <button id="btn-reiniciar" class="bg-red-900/40 border border-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-xs font-semibold transition-colors cursor-pointer">
+    <button id="btn-reiniciar" class="bg-red-900/40 border border-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-xs font-semibold transition-colors cursor-pointer-none">
       Limpiar Todo el Horario
     </button>
   </header>
 
-  <div class="flex flex-1 overflow-hidden">
+  <div class="flex flex-col md:flex-row flex-1 md:overflow-hidden">
     
-    <div class="w-80 bg-slate-900 border-r border-slate-800 p-4 flex flex-col h-full shrink-0">
+    <div class="w-full md:w-80 bg-slate-900 border-b md:border-b-0 md:border-r border-slate-800 p-4 flex flex-col h-[300px] md:h-full shrink-0">
       <h2 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Materias Disponibles</h2>
       
       <div class="mb-3">
         <label class="text-[11px] font-medium text-slate-400 block mb-1">Filtrar por bloque:</label>
         <select id="filtro-semestre" class="w-full p-2 bg-slate-800 rounded border border-slate-700 text-xs text-white focus:outline-none focus:border-cyan-500">
           <option value="todos">Mostrar todos los semestres</option>
-          </select>
+        </select>
       </div>
 
       <div id="banco-materias" class="flex-1 overflow-y-auto space-y-2 pr-1 custom-scrollbar">
-        </div>
-      <p class="text-[10px] text-slate-500 mt-2 text-center italic shrink-0">Tip: Filtra por semestre para no perderte entre tanta materia.</p>
+      </div>
+      <p class="hidden md:block text-[10px] text-slate-500 mt-2 text-center italic shrink-0">Tip: Filtra por semestre para no perderte entre tanta materia.</p>
     </div>
 
-    <div class="flex-1 p-6 overflow-y-auto h-full bg-slate-950">
-      <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl min-w-[850px]">
+    <div class="flex-1 p-4 md:p-6 overflow-x-auto md:overflow-y-auto h-full bg-slate-950 custom-scrollbar">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl min-w-[800px] md:min-w-0">
+        
         <div class="grid grid-cols-6 bg-slate-800 text-center font-semibold text-xs text-slate-300 py-3 border-b border-slate-700 sticky top-0 z-10">
           <div>Hora</div>
           <div>Lunes</div>
@@ -52,8 +62,10 @@
           <div>Jueves</div>
           <div>Viernes</div>
         </div>
+        
         <div id="filas-horario" class="divide-y divide-slate-800">
-          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -73,7 +85,13 @@
     ];
     const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
     
+    // --- CONEXIÓN DIRECTA AL LOCALSTORAGE ---
     let materiasAsignadas = {}; 
+    const horarioGuardado = localStorage.getItem('horario_upiig');
+    if (horarioGuardado) {
+      materiasAsignadas = JSON.parse(horarioGuardado);
+    }
+    
     const selector = document.getElementById('selector-carrera');
     const filtroSemestre = document.getElementById('filtro-semestre');
     
@@ -96,14 +114,16 @@
       cargarBancoMaterias(selector.value, e.target.value);
     });
 
+    // Limpiar Horario Completo
     document.getElementById('btn-reiniciar').addEventListener('click', () => {
       if(confirm("¿Seguro que quieres borrar todo tu horario actual?")) {
         materiasAsignadas = {};
+        localStorage.removeItem('horario_upiig'); // Limpia almacenamiento local
         generarCuadricula();
       }
     });
 
-    // Actualizar el menú desplegable del filtro según los semestres reales que tenga la carrera
+    // Actualizar filtros
     function actualizarOpcionesFiltro(carrera) {
       filtroSemestre.innerHTML = '<option value="todos">Mostrar todos los semestres</option>';
       if (!carrera || !ofertaAcademica[carrera]) return;
@@ -117,7 +137,7 @@
       });
     }
 
-    // Cargar materias aplicando filtros sin alterar la UI global
+    // Cargar materias en el banco lateral
     function cargarBancoMaterias(carrera, semestreFiltro) {
       const banco = document.getElementById('banco-materias');
       banco.innerHTML = ""; 
@@ -125,7 +145,6 @@
       if (!carrera || !ofertaAcademica[carrera]) return;
 
       ofertaAcademica[carrera].forEach((materia, index) => {
-        // Validar filtro
         if (semestreFiltro !== "todos" && materia.semestre !== semestreFiltro) return;
 
         const div = document.createElement('div');
@@ -135,7 +154,7 @@
         div.dataset.materiaInfo = JSON.stringify(materia);
 
         div.innerHTML = `
-          <p class="text-xs font-medium text-slate-200">${materia.nombre}</p>
+          <p class="text-xs font-medium text-slate-200 leading-tight">${materia.nombre}</p>
           <span class="text-[9px] text-slate-400 bg-slate-700 px-1.5 py-0.5 rounded mt-1 inline-block">${materia.semestre}</span>
         `;
         
@@ -147,6 +166,7 @@
       });
     }
 
+    // Generar la grilla del horario
     function generarCuadricula() {
       const contenedorFilas = document.getElementById('filas-horario');
       contenedorFilas.innerHTML = ""; 
@@ -165,10 +185,10 @@
           if (materiasAsignadas[idCelda]) {
             const mat = materiasAsignadas[idCelda];
             celda.innerHTML = `
-              <div class="bg-cyan-600/20 border border-cyan-500 text-cyan-300 p-2 rounded text-center text-xs font-semibold shadow-sm w-full cursor-pointer relative group hover:bg-red-950/40 hover:border-red-500 hover:text-red-400 transition-all" 
+              <div class="bg-cyan-600/20 border border-cyan-500 text-cyan-300 p-2 rounded flex flex-col items-center justify-center h-full text-center text-xs font-semibold shadow-sm w-full cursor-pointer relative group hover:bg-red-950/40 hover:border-red-500 hover:text-red-400 transition-all" 
                    title="Haz clic para quitar de este bloque" onclick="quitarMateria('${idCelda}')">
-                <span class="block group-hover:hidden text-[11px] leading-tight">${mat.nombre}</span>
-                <span class="hidden group-hover:block font-bold">❌ Quitar</span>
+                <span class="block group-hover:hidden text-[10px] md:text-[11px] leading-tight overflow-hidden text-ellipsis">${mat.nombre}</span>
+                <span class="hidden group-hover:block font-bold text-xs">❌ Quitar</span>
               </div>
             `;
           }
@@ -184,6 +204,9 @@
             if (!materiasAsignadas[idCelda]) {
               const infoMateria = JSON.parse(elementoOriginal.dataset.materiaInfo);
               materiasAsignadas[idCelda] = infoMateria;
+              
+              // Guardar estado actual tras arrastrar exitosamente
+              localStorage.setItem('horario_upiig', JSON.stringify(materiasAsignadas));
               generarCuadricula();
             }
           });
@@ -194,12 +217,14 @@
       });
     }
 
+    // Quitar materia individual
     function quitarMateria(idCelda) {
       delete materiasAsignadas[idCelda];
+      localStorage.setItem('horario_upiig', JSON.stringify(materiasAsignadas)); // Sincroniza LocalStorage
       generarCuadricula();
     }
 
-    // Inicialización
+    // Inicialización de la UI
     actualizarOpcionesFiltro(selector.value);
     cargarBancoMaterias(selector.value, "todos");
     generarCuadricula();
