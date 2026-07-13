@@ -4,23 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Armador de Horarios - UPIIG</title>
-  <!-- Tailwind CSS para diseño moderno -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
-    .celda-hora { min-height: 80px; }
+    .celda-hora { min-height: 85px; }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col">
+<body class="bg-slate-950 text-slate-100 font-sans h-screen flex flex-col overflow-hidden">
 
-  <!-- BARRA SUPERIOR DE NAVEGACIÓN -->
-  <header class="bg-slate-900 border-b border-slate-800 p-4 flex flex-wrap items-center justify-between gap-4 sticky top-0 z-50">
+  <header class="bg-slate-900 border-b border-slate-800 p-4 flex flex-wrap items-center justify-between gap-4 h-16 shrink-0">
     <div class="flex items-center gap-4">
       <h1 class="text-xl font-bold text-cyan-400">Horarios UPIIG</h1>
       <div class="flex items-center gap-2">
         <label class="text-xs font-medium text-slate-400">Carrera actual:</label>
         <select id="selector-carrera" class="p-2 bg-slate-800 rounded border border-slate-700 text-sm text-white focus:outline-none focus:border-cyan-500">
-          <!-- Se llena con JS -->
-        </select>
+          </select>
       </div>
     </div>
     <button id="btn-reiniciar" class="bg-red-900/40 border border-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-xs font-semibold transition-colors cursor-pointer">
@@ -28,23 +25,26 @@
     </button>
   </header>
 
-  <!-- ESPACIO DE TRABAJO -->
   <div class="flex flex-1 overflow-hidden">
     
-    <!-- Panel Lateral: Banco de Materias -->
-    <div class="w-80 bg-slate-900 border-r border-slate-800 p-4 flex flex-col">
-      <h2 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-3">Materias Disponibles</h2>
-      <div id="banco-materias" class="flex-1 overflow-y-auto space-y-2 pr-1">
-        <!-- Las materias se cargan dinámicamente aquí -->
+    <div class="w-80 bg-slate-900 border-r border-slate-800 p-4 flex flex-col h-full shrink-0">
+      <h2 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Materias Disponibles</h2>
+      
+      <div class="mb-3">
+        <label class="text-[11px] font-medium text-slate-400 block mb-1">Filtrar por bloque:</label>
+        <select id="filtro-semestre" class="w-full p-2 bg-slate-800 rounded border border-slate-700 text-xs text-white focus:outline-none focus:border-cyan-500">
+          <option value="todos">Mostrar todos los semestres</option>
+          </select>
       </div>
-      <p class="text-[11px] text-slate-500 mt-3 text-center italic">Tip: Puedes arrastrar la misma materia varias veces para cubrir todos sus días y horas a la semana.</p>
+
+      <div id="banco-materias" class="flex-1 overflow-y-auto space-y-2 pr-1 custom-scrollbar">
+        </div>
+      <p class="text-[10px] text-slate-500 mt-2 text-center italic shrink-0">Tip: Filtra por semestre para no perderte entre tanta materia.</p>
     </div>
 
-    <!-- Panel Central: Cuadrícula del Horario -->
-    <div class="flex-1 p-6 overflow-auto">
-      <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl min-w-[800px]">
-        <!-- Encabezado de Días -->
-        <div class="grid grid-cols-6 bg-slate-800 text-center font-semibold text-xs text-slate-300 py-3 border-b border-slate-700">
+    <div class="flex-1 p-6 overflow-y-auto h-full bg-slate-950">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl min-w-[850px]">
+        <div class="grid grid-cols-6 bg-slate-800 text-center font-semibold text-xs text-slate-300 py-3 border-b border-slate-700 sticky top-0 z-10">
           <div>Hora</div>
           <div>Lunes</div>
           <div>Martes</div>
@@ -52,15 +52,12 @@
           <div>Jueves</div>
           <div>Viernes</div>
         </div>
-        <!-- Filas de Horas -->
         <div id="filas-horario" class="divide-y divide-slate-800">
-          <!-- Generado con JS -->
-        </div>
+          </div>
       </div>
     </div>
   </div>
 
-  <!-- Importamos nuestros datos y la lógica -->
   <script src="materias.js"></script>
   <script>
     const horas = [
@@ -76,13 +73,11 @@
     ];
     const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
     
-    // Almacena qué materia está en cada celda concreta del horario
     let materiasAsignadas = {}; 
-
-    // Inicializar la App
     const selector = document.getElementById('selector-carrera');
+    const filtroSemestre = document.getElementById('filtro-semestre');
     
-    // Llenar selector de carreras
+    // Inicializar carreras
     Object.keys(ofertaAcademica).forEach(carrera => {
       const opt = document.createElement('option');
       opt.value = carrera;
@@ -90,12 +85,17 @@
       selector.appendChild(opt);
     });
 
-    // Escuchar cambios de carrera en el menú
+    // Cambios de Carrera
     selector.addEventListener('change', (e) => {
-      cargarBancoMaterias(e.target.value);
+      actualizarOpcionesFiltro(e.target.value);
+      cargarBancoMaterias(e.target.value, "todos");
     });
 
-    // Botón para resetear todo el canvas
+    // Cambios de Filtro de Semestre
+    filtroSemestre.addEventListener('change', (e) => {
+      cargarBancoMaterias(selector.value, e.target.value);
+    });
+
     document.getElementById('btn-reiniciar').addEventListener('click', () => {
       if(confirm("¿Seguro que quieres borrar todo tu horario actual?")) {
         materiasAsignadas = {};
@@ -103,27 +103,40 @@
       }
     });
 
-    // Renderizar las materias en el banco izquierdo (AHORA SE QUEDAN FIJAS)
-    function cargarBancoMaterias(carrera) {
+    // Actualizar el menú desplegable del filtro según los semestres reales que tenga la carrera
+    function actualizarOpcionesFiltro(carrera) {
+      filtroSemestre.innerHTML = '<option value="todos">Mostrar todos los semestres</option>';
+      if (!carrera || !ofertaAcademica[carrera]) return;
+
+      const semestresUnicos = [...new Set(ofertaAcademica[carrera].map(m => m.semestre))];
+      semestresUnicos.forEach(sem => {
+        const opt = document.createElement('option');
+        opt.value = sem;
+        opt.textContent = sem;
+        filtroSemestre.appendChild(opt);
+      });
+    }
+
+    // Cargar materias aplicando filtros sin alterar la UI global
+    function cargarBancoMaterias(carrera, semestreFiltro) {
       const banco = document.getElementById('banco-materias');
       banco.innerHTML = ""; 
 
-      if (!carrera) return;
+      if (!carrera || !ofertaAcademica[carrera]) return;
 
       ofertaAcademica[carrera].forEach((materia, index) => {
+        // Validar filtro
+        if (semestreFiltro !== "todos" && materia.semestre !== semestreFiltro) return;
+
         const div = document.createElement('div');
-        div.className = "p-3 bg-slate-800 rounded-lg border border-slate-700 shadow cursor-grab hover:border-cyan-500/50 transition-colors select-none";
+        div.className = "p-3 bg-slate-800 rounded-lg border border-slate-700 shadow cursor-grab hover:border-cyan-500/50 transition-colors select-none shrink-0";
         div.draggable = true;
-        
-        // Usamos un ID único combinando el id de la materia y su índice para el drag & drop
         div.id = `drag-${materia.id}-${index}`;
-        
-        // Guardamos los datos puros de la materia dentro de los metadatos del HTML
         div.dataset.materiaInfo = JSON.stringify(materia);
 
         div.innerHTML = `
-          <p class="text-sm font-medium text-slate-200">${materia.nombre}</p>
-          <span class="text-[10px] text-slate-400 bg-slate-700 px-1.5 py-0.5 rounded mt-1 inline-block">${materia.semestre}</span>
+          <p class="text-xs font-medium text-slate-200">${materia.nombre}</p>
+          <span class="text-[9px] text-slate-400 bg-slate-700 px-1.5 py-0.5 rounded mt-1 inline-block">${materia.semestre}</span>
         `;
         
         div.addEventListener('dragstart', (e) => {
@@ -134,7 +147,6 @@
       });
     }
 
-    // Generar o redibujar la cuadrícula manteniendo el estado actual
     function generarCuadricula() {
       const contenedorFilas = document.getElementById('filas-horario');
       contenedorFilas.innerHTML = ""; 
@@ -142,7 +154,6 @@
       horas.forEach(hora => {
         const fila = document.createElement('div');
         fila.className = "grid grid-cols-6 celda-hora";
-        
         fila.innerHTML = `<div class="flex items-center justify-center bg-slate-900/50 text-xs font-medium text-slate-400 p-2 border-r border-slate-800 text-center">${hora}</div>`;
         
         dias.forEach(dia => {
@@ -151,19 +162,17 @@
           celda.className = "p-2 border-r border-slate-800 last:border-r-0 bg-slate-900/20 flex flex-col justify-center transition-colors relative group";
           celda.id = idCelda;
 
-          // Si esta celda tiene una materia guardada, la dibujamos
           if (materiasAsignadas[idCelda]) {
             const mat = materiasAsignadas[idCelda];
             celda.innerHTML = `
               <div class="bg-cyan-600/20 border border-cyan-500 text-cyan-300 p-2 rounded text-center text-xs font-semibold shadow-sm w-full cursor-pointer relative group hover:bg-red-950/40 hover:border-red-500 hover:text-red-400 transition-all" 
                    title="Haz clic para quitar de este bloque" onclick="quitarMateria('${idCelda}')">
-                <span class="block group-hover:hidden">${mat.nombre}</span>
+                <span class="block group-hover:hidden text-[11px] leading-tight">${mat.nombre}</span>
                 <span class="hidden group-hover:block font-bold">❌ Quitar</span>
               </div>
             `;
           }
 
-          // Eventos Drop para capturar el arrastre
           celda.addEventListener('dragover', (e) => e.preventDefault());
           celda.addEventListener('drop', (e) => {
             e.preventDefault();
@@ -172,14 +181,9 @@
             
             if (!elementoOriginal) return;
             
-            // Validar que la celda de la hora/día esté vacía antes de meter la materia
             if (!materiasAsignadas[idCelda]) {
               const infoMateria = JSON.parse(elementoOriginal.dataset.materiaInfo);
-              
-              // Guardamos la materia en esta celda específica
               materiasAsignadas[idCelda] = infoMateria;
-              
-              // Redibujamos solo la cuadrícula
               generarCuadricula();
             }
           });
@@ -190,14 +194,14 @@
       });
     }
 
-    // Función para quitar una sola materia de una celda específica
     function quitarMateria(idCelda) {
       delete materiasAsignadas[idCelda];
       generarCuadricula();
     }
 
-    // Arranque inicial automático
-    cargarBancoMaterias(selector.value);
+    // Inicialización
+    actualizarOpcionesFiltro(selector.value);
+    cargarBancoMaterias(selector.value, "todos");
     generarCuadricula();
   </script>
 </body>
