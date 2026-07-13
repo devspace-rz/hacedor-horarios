@@ -1,19 +1,20 @@
 const ofertaAcademica = {
   "Ingeniería Aeronáutica": [
     // 1° Semestre
-    { id: "aero_1_1", nombre: "Física Clásica", semestre: "1°Semestre" },
-    { id: "aero_1_2", nombre: "Fundamentos de Álgebra", semestre: "1°  Semestre" },
+    { id: "aero_1_1", nombre: "Física Clásica", semestre: "1° Semestre" },
+    { id: "aero_1_2", nombre: "Fundamentos de Álgebra", semestre: "1° Semestre" },
     { id: "aero_1_3", nombre: "Humanidades I: Ingeniería, Ciencia y Sociedad", semestre: "1° semestre" },
     { id: "aero_1_4", nombre: "Fundamentos de Programación", semestre: "1° Semestre" },
     { id: "aero_1_5", nombre: "Cálculo Diferencial e Integral", semestre: "1° Semestre" },
     { id: "aero_1_6", nombre: "Química Básica", semestre: "1° Semestre" },
+    
     // 2° Semestre
     { id: "aero_2_1", nombre: "POO", semestre: "2°Semestre" },
     { id: "aero_2_2", nombre: "Humanidades 2", semestre: "2°  Semestre" },
     { id: "aero_2_3", nombre: "Ecuaciones Diferenciales", semestre: "2° semestre" },
     { id: "aero_2_4", nombre: "Quimica Aplicada", semestre: "2° Semestre" },
     { id: "aero_2_5", nombre: "Cálculo Vectorial", semestre: "2° Semestre" },
-    { id: "aero_2_6", nombre: "Electricidad y Magnetismo", semestre: "1° Semestre" },
+    { id: "aero_2_6", nombre: "Electricidad y Magnetismo", semestre: "2° Semestre" },
     
     // 3° Semestre
     { id: "aero_3_1", nombre: "Analisis Numerico", semestre: "3° Semestre" },
