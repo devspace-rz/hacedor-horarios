@@ -95,28 +95,95 @@ const ofertaAcademica = {
   "Ingeniería Industrial - Plan 2022": [
     // 1° Semestre
     { id: "ind22_1_1", nombre: "Fundamentos de Administración", semestre: "1° Semestre" },
-    { id: "ind22_1_2", nombre: "Fundamentos de Ingeniería Industrial", semestre: "1° Semestre" },
+    { id: "ind22_1_2", nombre: "Responsabilidad Social y Ética", semestre: "1° Semestre" },
     { id: "ind22_1_3", nombre: "Metodología de la Investigación", semestre: "1° Semestre" },
-    { id: "ind22_1_4", nombre: "Tecnologías de la Información", semestre: "1° Semestre" },
+    { id: "ind22_1_4", nombre: "Fundamentos de la Ingeniería Industrial", semestre: "1° Semestre" },
     { id: "ind22_1_5", nombre: "Dibujo Asistido por Computadora", semestre: "1° Semestre" },
-    { id: "ind22_1_6", nombre: "Cálculo Diferencial e Integral", semestre: "1° Semestre" },
-    // 3° Semestre
-    { id: "ind22_3_1", nombre: "Electricidad y Electrónica Industrial", semestre: "3° Semestre" },
-    { id: "ind22_3_2", nombre: "Metrología y Normalización", semestre: "3° Semestre" },
-    { id: "ind22_3_3", nombre: "Estadística Inferencial", semestre: "3° Semestre" },
-    { id: "ind22_3_4", nombre: "Costos de Producción", semestre: "3° Semestre" },
-    { id: "ind22_3_5", nombre: "Química Industrial", semestre: "3° Semestre" },
-    // 5° Semestre
-    { id: "ind22_5_1", nombre: "Investigación de Operaciones II", semestre: "5° Semestre" },
-    { id: "ind22_5_2", nombre: "Diseño de Experimentos", semestre: "5° Semestre" },
-    { id: "ind22_5_3", nombre: "Ergonomía", semestre: "5° Semestre" },
-    { id: "ind22_5_4", nombre: "Administración del Mantenimiento", semestre: "5° Semestre" },
-    { id: "ind22_5_5", nombre: "Procesos de Manufactura", semestre: "5° Semestre" },
-    // 8° Semestre
-    { id: "ind22_8_1", nombre: "Sistemas de Gestión", semestre: "8° Semestre" },
-    { id: "ind22_8_2", nombre: "Sistemas Integrados de Manufactura", semestre: "8° Semestre" },
-    { id: "ind22_8_3", nombre: "Gestión de la Cadena de Suministro", semestre: "8° Semestre" },
-    { id: "ind22_8_4", nombre: "Optativa III: Automatización de Procesos Industriales", semestre: "8° Semestre" }
+    { id: "ind22_1_6", nombre: "Cálculo Diferencial", semestre: "1° Semestre" },
+    { id: "ind22_1_7", nombre: "Tecnologia Informatica", semestre: "1° Semestre" },
+    
+    // ------------------- 2DO SEMESTRE -------------------
+    { id: "ind22_2_1", nombre: "Administración de Capital Humano", semestre: "2° Semestre" },
+    { id: "ind22_2_2", nombre: "Probabilidad", semestre: "2° Semestre" },
+    { id: "ind22_2_3", nombre: "Mecanica Clásica", semestre: "2° Semestre" },
+    { id: "ind22_2_4", nombre: "Cálculo Integral", semestre: "2° Semestre" },
+    { id: "ind22_2_5", nombre: "Comunicación Profesional", semestre: "2° Semestre" },
+    { id: "ind22_2_6", nombre: "Psicología en el Trabajo", semestre: "2° Semestre" },
+    { id: "ind22_2_7", nombre: "Legislación Industrial", semestre: "2° Semestre" },
+
+    // ------------------- 3ER SEMESTRE -------------------
+    { id: "ind22_3_1", nombre: "Electromagnetismo", semestre: "3° Semestre" },
+    { id: "ind22_3_3", nombre: "Química Aplicada", semestre: "3° Semestre" },
+    { id: "ind22_3_4", nombre: "Estadística", semestre: "3° Semestre" },
+    { id: "ind22_3_5", nombre: "Cálculo Vectorial", semestre: "3° Semestre" },
+    { id: "ind22_3_6", nombre: "Normalización y Metrología Dimensional", semestre: "3° Semestre" },
+    { id: "ind22_3_7", nombre: "Mecánica de Materiales", semestre: "3° Semestre" },
+    { id: "ind22_3_8", nombre: "Economía", semestre: "3° Semestre" },
+    { id: "ind22_3_9", nombre: "Métodos Matemáticos", semestre: "3° Semestre" },
+
+    // ------------------- 4TO SEMESTRE -------------------
+    { id: "ind22_4_1", nombre: "Productividad y Diseño del Trabajo", semestre: "4° Semestre" },
+    { id: "ind22_4_2", nombre: "Química Industrial ", semestre: "4° Semestre" },
+    { id: "ind22_4_3", nombre: "Electricidad y Electrónica", semestre: "4° Semestre" },
+    { id: "ind22_4_4", nombre: "Sistemas Neumáticos e Hidráulicos", semestre: "4° Semestre" },
+    { id: "ind22_4_5", nombre: "Álgebra Lineal ", semestre: "4° Semestre" },
+    { id: "ind22_4_6", nombre: "Control de Calidad", semestre: "4° Semestre" },
+    { id: "ind22_4_7", nombre: "Dinámica de Mecanismos", semestre: "4° Semestre" },
+    { id: "ind22_4_8", nombre: "Tecnologia de materiales", semestre: "4° Semestre" },
+    { id: "ind22_4_9", nombre: "Contabilidad y costos", semestre: "4° Semestre" },
+   
+    
+
+
+    // ------------------- 5TO SEMESTRE -------------------
+    { id: "ind22_5_1", nombre: "Planeación y Control de Inventarios ", semestre: "5° Semestre" },
+    { id: "ind22_5_2", nombre: "Pruebas de Control de Calidad ", semestre: "5° Semestre" },
+    { id: "ind22_5_3", nombre: "Electricidad Aplicada", semestre: "5° Semestre" },
+    { id: "ind22_5_4", nombre: "Determinación y Aplicación de Estándares", semestre: "5° Semestre" },
+    { id: "ind22_5_5", nombre: "Plantas y Procesos Industriales", semestre: "5° Semestre" },
+    { id: "ind22_5_6", nombre: "Mercadotecnia ", semestre: "5° Semestre" },
+    { id: "ind22_5_7", nombre: "Modelos Deterministas de Investigación de Operaciones", semestre: "5° Semestre" },
+    { id: "ind22_5_8", nombre: "Instrumentación y Control", semestre: "5° Semestre" },
+    { id: "ind22_5_9", nombre: "Planeación Financiera", semestre: "5° Semestre" },
+
+    // ------------------- 6TO SEMESTRE -------------------
+    { id: "ind22_6_1", nombre: "Procesos Industriales de Manufactura ", semestre: "6° Semestre" },
+    { id: "ind22_6_2", nombre: "Distribución de Planta y Manejo de Materiales", semestre: "6° Semestre" },
+    { id: "ind22_6_3", nombre: "Optativa I: Elementos para el Control de Procesos ", semestre: "6° Semestre" },
+    { id: "ind22_6_4", nombre: "Conformado de Materiales", semestre: "6° Semestre" },
+    { id: "ind22_6_5", nombre: "Administración Estratégica", semestre: "6° Semestre" },
+    { id: "ind22_6_6", nombre: "Manufactura Esbelta", semestre: "6° Semestre" },
+    { id: "ind22_6_7", nombre: "Planeación y Control Maestro de la Producción", semestre: "6° Semestre" },
+    { id: "ind22_6_8", nombre: "Modelos Estocásticos de Investigación de Operaciones ", semestre: "6° Semestre" },
+    { id: "ind22_6_9", nombre: "Ingeniería Económica", semestre: "6° Semestre" },
+    { id: "ind22_6_10", nombre: "Optativa I:Ensayos y aptitud de confiabilidad ", semestre: "6° Semestre" },
+  
+    // ------------------- 7MO SEMESTRE -------------------
+    { id: "ind22_7_1", nombre: "Formulación y Evaluación de Proyectos", semestre: "7° Semestre" },
+    { id: "ind22_7_2", nombre: "Manufactura Aditiva y Sustractiva", semestre: "7° Semestre" },
+    { id: "ind22_7_3", nombre: "Simulación de Sistemas", semestre: "7° Semestre" },
+    { id: "ind22_7_4", nombre: "Sistemas Híbridos", semestre: "7° Semestre" },
+    { id: "ind22_7_5", nombre: "Optativa II: Control de Procesos", semestre: "7° Semestre" },
+    { id: "ind22_7_6", nombre: "Mantenimiento", semestre: "7° Semestre" },
+    { id: "ind22_7_7", nombre: "Gestión de la Innovación", semestre: "7° Semestre" },
+    { id: "ind22_7_8", nombre: "Optativa II: Modelos de Acreditación y Certificación", semestre: "7° Semestre" },
+    { id: "ind22_7_9", nombre: "Logística", semestre: "7° Semestre" },
+    { id: "ind22_7_10", nombre: "Seguridad y Salud en el Trabajo", semestre: "7° Semestre" },
+
+
+    
+
+    // ------------------- 8VO SEMESTRE -------------------
+    { id: "ind22_8_1", nombre: "Habilidades Directivas", semestre: "8° Semestre" },
+    { id: "ind22_8_2", nombre: "Gestión Ambienta", semestre: "8° Semestre" },
+    { id: "ind22_8_3", nombre: "Proyecto Integrador Industrial", semestre: "8° Semestre" },
+    { id: "ind22_8_4", nombre: "Emprendimiento", semestre: "8° Semestre" },
+    { id: "ind22_8_5", nombre: "Sistemas Integrados de Manufactura", semestre: "8° Semestre" },
+    { id: "ind22_8_6", nombre: "Optativa III: Automatización de Procesos Industriales", semestre: "8° Semestre" },
+    { id: "ind22_8_7", nombre: "Gestión de la Cadena de Suministro ", semestre: "8° Semestre" },
+    { id: "ind22_8_8", nombre: "Gestión de Proyectos", semestre: "8° Semestre" },
+    { id: "ind22_8_9", nombre: "Optativa III: Auditoría de Calidad", semestre: "8° Semestre" },
+  
   ],
 
   "Ingeniería Industrial - Plan Anterior": [
