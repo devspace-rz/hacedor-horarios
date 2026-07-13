@@ -12,7 +12,7 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col">
 
-  <!-- BARRA SUPERIOR DE NAVEGACIÓN (Permite cambiar de carrera sin borrar el horario) -->
+  <!-- BARRA SUPERIOR DE NAVEGACIÓN -->
   <header class="bg-slate-900 border-b border-slate-800 p-4 flex flex-wrap items-center justify-between gap-4 sticky top-0 z-50">
     <div class="flex items-center gap-4">
       <h1 class="text-xl font-bold text-cyan-400">Horarios UPIIG</h1>
@@ -37,10 +37,10 @@
       <div id="banco-materias" class="flex-1 overflow-y-auto space-y-2 pr-1">
         <!-- Las materias se cargan dinámicamente aquí -->
       </div>
-      <p class="text-[11px] text-slate-500 mt-3 text-center italic">Tip: Puedes cambiar de carrera arriba para buscar otras materias sin perder lo que ya armaste.</p>
+      <p class="text-[11px] text-slate-500 mt-3 text-center italic">Tip: Puedes arrastrar la misma materia varias veces para cubrir todos sus días y horas a la semana.</p>
     </div>
 
-    <!-- Panel Central: Cuadrícula del Horario (7:00 AM a 8:30 PM) -->
+    <!-- Panel Central: Cuadrícula del Horario -->
     <div class="flex-1 p-6 overflow-auto">
       <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl min-w-[800px]">
         <!-- Encabezado de Días -->
@@ -60,10 +60,9 @@
     </div>
   </div>
 
-  <!-- Importamos nuestros datos y la nueva lógica -->
+  <!-- Importamos nuestros datos y la lógica -->
   <script src="materias.js"></script>
   <script>
-    // Bloques de 1:30 horas desde las 7:00 AM hasta las 8:30 PM (20:30)
     const horas = [
       "07:00 - 08:30", 
       "08:30 - 10:00", 
@@ -77,13 +76,13 @@
     ];
     const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
     
-    // Guardará las materias asignadas globalmente para no perderlas al redibujar
+    // Almacena qué materia está en cada celda concreta del horario
     let materiasAsignadas = {}; 
 
     // Inicializar la App
     const selector = document.getElementById('selector-carrera');
     
-    // Llenar selector
+    // Llenar selector de carreras
     Object.keys(ofertaAcademica).forEach(carrera => {
       const opt = document.createElement('option');
       opt.value = carrera;
@@ -91,7 +90,7 @@
       selector.appendChild(opt);
     });
 
-    // Escuchar cambios de carrera
+    // Escuchar cambios de carrera en el menú
     selector.addEventListener('change', (e) => {
       cargarBancoMaterias(e.target.value);
     });
@@ -101,27 +100,25 @@
       if(confirm("¿Seguro que quieres borrar todo tu horario actual?")) {
         materiasAsignadas = {};
         generarCuadricula();
-        cargarBancoMaterias(selector.value);
       }
     });
 
-    // Renderizar las materias en el banco izquierdo
+    // Renderizar las materias en el banco izquierdo (AHORA SE QUEDAN FIJAS)
     function cargarBancoMaterias(carrera) {
       const banco = document.getElementById('banco-materias');
-      banco.innerHTML = ""; // Limpiar panel visual
+      banco.innerHTML = ""; 
 
       if (!carrera) return;
 
-      ofertaAcademica[carrera].forEach(materia => {
-        // Si la materia ya está puesta en el horario, no la muestres en el banco lateral
-        if (Object.values(materiasAsignadas).some(m => m.id === materia.id)) return;
-
+      ofertaAcademica[carrera].forEach((materia, index) => {
         const div = document.createElement('div');
         div.className = "p-3 bg-slate-800 rounded-lg border border-slate-700 shadow cursor-grab hover:border-cyan-500/50 transition-colors select-none";
         div.draggable = true;
-        div.id = materia.id;
         
-        // Guardamos los datos de la materia dentro del elemento HTML como texto oculto
+        // Usamos un ID único combinando el id de la materia y su índice para el drag & drop
+        div.id = `drag-${materia.id}-${index}`;
+        
+        // Guardamos los datos puros de la materia dentro de los metadatos del HTML
         div.dataset.materiaInfo = JSON.stringify(materia);
 
         div.innerHTML = `
@@ -140,53 +137,50 @@
     // Generar o redibujar la cuadrícula manteniendo el estado actual
     function generarCuadricula() {
       const contenedorFilas = document.getElementById('filas-horario');
-      contenedorFilas.innerHTML = ""; // Limpiar visualmente para reconstruir
+      contenedorFilas.innerHTML = ""; 
 
       horas.forEach(hora => {
         const fila = document.createElement('div');
         fila.className = "grid grid-cols-6 celda-hora";
         
-        // Celda izquierda de la hora
         fila.innerHTML = `<div class="flex items-center justify-center bg-slate-900/50 text-xs font-medium text-slate-400 p-2 border-r border-slate-800 text-center">${hora}</div>`;
         
-        // Celdas de días
         dias.forEach(dia => {
           const idCelda = `${dia}-${hora}`;
           const celda = document.createElement('div');
           celda.className = "p-2 border-r border-slate-800 last:border-r-0 bg-slate-900/20 flex flex-col justify-center transition-colors relative group";
           celda.id = idCelda;
 
-          // Si esta celda ya tenía una materia guardada en memoria, la dibujamos
+          // Si esta celda tiene una materia guardada, la dibujamos
           if (materiasAsignadas[idCelda]) {
             const mat = materiasAsignadas[idCelda];
             celda.innerHTML = `
               <div class="bg-cyan-600/20 border border-cyan-500 text-cyan-300 p-2 rounded text-center text-xs font-semibold shadow-sm w-full cursor-pointer relative group hover:bg-red-950/40 hover:border-red-500 hover:text-red-400 transition-all" 
-                   title="Haz clic para quitar esta materia" onclick="quitarMateria('${idCelda}')">
+                   title="Haz clic para quitar de este bloque" onclick="quitarMateria('${idCelda}')">
                 <span class="block group-hover:hidden">${mat.nombre}</span>
                 <span class="hidden group-hover:block font-bold">❌ Quitar</span>
               </div>
             `;
           }
 
-          // Eventos Drop
+          // Eventos Drop para capturar el arrastre
           celda.addEventListener('dragover', (e) => e.preventDefault());
           celda.addEventListener('drop', (e) => {
             e.preventDefault();
-            const idMateria = e.dataTransfer.getData('text/plain');
-            const elementoOriginal = document.getElementById(idMateria);
+            const idElementoArrastrado = e.dataTransfer.getData('text/plain');
+            const elementoOriginal = document.getElementById(idElementoArrastrado);
             
             if (!elementoOriginal) return;
             
-            // Validar que la celda esté vacía
+            // Validar que la celda de la hora/día esté vacía antes de meter la materia
             if (!materiasAsignadas[idCelda]) {
               const infoMateria = JSON.parse(elementoOriginal.dataset.materiaInfo);
               
-              // Guardar en nuestro estado global
+              // Guardamos la materia en esta celda específica
               materiasAsignadas[idCelda] = infoMateria;
               
-              // Redibujar cuadrícula y actualizar el banco lateral
+              // Redibujamos solo la cuadrícula
               generarCuadricula();
-              cargarBancoMaterias(selector.value);
             }
           });
           
@@ -196,14 +190,10 @@
       });
     }
 
-    // Función para quitar una sola materia
+    // Función para quitar una sola materia de una celda específica
     function quitarMateria(idCelda) {
-      // Eliminar del registro global
       delete materiasAsignadas[idCelda];
-      
-      // Refrescar la vista
       generarCuadricula();
-      cargarBancoMaterias(selector.value);
     }
 
     // Arranque inicial automático
