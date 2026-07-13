@@ -53,7 +53,7 @@ const ofertaAcademica = {
     { id: "aero_6_6", nombre: "Sistemas Electronicos Digitales", semestre: "6° Semestre" },
     { id: "aero_6_7", nombre: "Ingenieria de operaciones", semestre: "6° Semestre" },
     { id: "aero_6_8", nombre: "Meteorologia", semestre: "6° Semestre" },
-    { id: "aero_6_9", nombre: "Optativa I: Aeropuertos", semestre: "6° Semestre " },
+    { id: "aero_6_9", nombre: "Optativa I: Aeropuertos", semestre: "6° Semestre" },
     { id: "aero_6_10", nombre: "Sistemas en Aeronaves", semestre: "6° Semestre" },
   // 7° Semestre
     { id: "aero_7_1", nombre: "Dinámica de Vuelo", semestre: "7° Semestre" },
@@ -245,8 +245,7 @@ const ofertaAcademica = {
     { id: "biot23_5_6", nombre: "Procesos de Transferencia de Calor", semestre: "5° Semestre" },
     { id: "biot23_5_7", nombre: "Administración de la Producción", semestre: "5° Semestre"}, 
     { id: "biot23_5_8", nombre: "Bioseparaciones Mecánicas", semestre: "5° Semestre"}, 
-    { id: "biot23_5_9", nombre: "Electromecánica de Procesos", semestre: "5° Semestre"}, 
-    { id: "biot23_5_10", nombre: "Laboratorio de Bioingeniería", semestre: "5° Semestre"}, 
+    { id: "biot23_5_9", nombre: "Laboratorio de Bioingeniería", semestre: "5° Semestre"}, 
 
 
     // ------------------- 6TO SEMESTRE -------------------
