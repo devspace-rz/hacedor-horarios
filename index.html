@@ -24,9 +24,9 @@
     <div class="flex items-center gap-4 flex-wrap">
       
       <div class="hidden sm:flex items-center gap-3 bg-white/5 px-3 py-1.5 rounded-lg border border-slate-800">
-        <img src="https://www.ipn.mx/assets/files/main/img/template/logo-ipn.png" alt="Logo IPN" class="h-9 w-auto object-contain">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Logo_IPN.png" alt="Logo IPN" class="h-9 w-auto object-contain brightness-0 invert opacity-90">
         <div class="h-6 w-[1px] bg-slate-700"></div>
-        <img src="https://www.upiig.ipn.mx/assets/files/upiig/img/Conócenos/Logo-UPIIG-Blanco.png" alt="Logo UPIIG" class="h-9 w-auto object-contain">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Logo_UPIIG.png" alt="Logo UPIIG" class="h-9 w-auto object-contain opacity-90" onerror="this.src='https://raw.githubusercontent.com/sebastiantorres-dev/logos/main/upiig-blanco.png'">
       </div>
 
       <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
@@ -95,7 +95,7 @@
     ];
     const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
     
-    // --- CONEXIÓN AL LOCALSTORAGE (Carga de estado inicial) ---
+    // --- CONEXIÓN AL LOCALSTORAGE ---
     let materiasAsignadas = {}; 
     const horarioGuardado = localStorage.getItem('horario_upiig');
     if (horarioGuardado) {
@@ -124,16 +124,15 @@
       cargarBancoMaterias(selector.value, e.target.value);
     });
 
-    // Limpiar Horario Completo con confirmación
+    // Limpiar Horario Completo
     document.getElementById('btn-reiniciar').addEventListener('click', () => {
       if(confirm("¿Seguro que quieres borrar todo tu horario actual?")) {
         materiasAsignadas = {};
-        localStorage.removeItem('horario_upiig'); // Limpia almacenamiento local
+        localStorage.removeItem('horario_upiig'); 
         generarCuadricula();
       }
     });
 
-    // Actualizar el menú desplegable del filtro según los semestres reales
     function actualizarOpcionesFiltro(carrera) {
       filtroSemestre.innerHTML = '<option value="todos">Mostrar todos los semestres</option>';
       if (!carrera || !ofertaAcademica[carrera]) return;
@@ -147,7 +146,6 @@
       });
     }
 
-    // Cargar materias en el banco lateral
     function cargarBancoMaterias(carrera, semestreFiltro) {
       const banco = document.getElementById('banco-materias');
       banco.innerHTML = ""; 
@@ -176,7 +174,6 @@
       });
     }
 
-    // Generar la grilla del horario
     function generarCuadricula() {
       const contenedorFilas = document.getElementById('filas-horario');
       contenedorFilas.innerHTML = ""; 
@@ -215,7 +212,6 @@
               const infoMateria = JSON.parse(elementoOriginal.dataset.materiaInfo);
               materiasAsignadas[idCelda] = infoMateria;
               
-              // Guardar estado en LocalStorage tras arrastrar exitosamente
               localStorage.setItem('horario_upiig', JSON.stringify(materiasAsignadas));
               generarCuadricula();
             }
@@ -227,7 +223,6 @@
       });
     }
 
-    // Quitar materia individual y actualizar LocalStorage
     function quitarMateria(idCelda) {
       delete materiasAsignadas[idCelda];
       localStorage.setItem('horario_upiig', JSON.stringify(materiasAsignadas)); 
