@@ -20,16 +20,26 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans md:h-screen flex flex-col md:overflow-hidden min-h-screen">
 
-  <header class="bg-slate-900 border-b border-slate-800 p-4 flex flex-wrap items-center justify-between gap-4 md:h-16 shrink-0">
+  <header class="bg-slate-900 border-b border-slate-800 p-4 flex flex-wrap items-center justify-between gap-4 md:h-20 shrink-0">
     <div class="flex items-center gap-4 flex-wrap">
-      <h1 class="text-xl font-bold text-cyan-400">Horarios UPIIG</h1>
-      <div class="flex items-center gap-2">
-        <label class="text-xs font-medium text-slate-400">Carrera actual:</label>
-        <select id="selector-carrera" class="p-2 bg-slate-800 rounded border border-slate-700 text-sm text-white focus:outline-none focus:border-cyan-500">
-        </select>
+      
+      <div class="hidden sm:flex items-center gap-3 bg-white/5 px-3 py-1.5 rounded-lg border border-slate-800">
+        <img src="https://www.ipn.mx/assets/files/main/img/template/logo-ipn.png" alt="Logo IPN" class="h-9 w-auto object-contain">
+        <div class="h-6 w-[1px] bg-slate-700"></div>
+        <img src="https://www.upiig.ipn.mx/assets/files/upiig/img/Conócenos/Logo-UPIIG-Blanco.png" alt="Logo UPIIG" class="h-9 w-auto object-contain">
+      </div>
+
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+        <h1 class="text-xl font-bold text-cyan-400 leading-none">Horarios UPIIG</h1>
+        <div class="flex items-center gap-2 mt-1 sm:mt-0">
+          <label class="text-[11px] font-medium text-slate-400">Carrera:</label>
+          <select id="selector-carrera" class="p-1.5 bg-slate-800 rounded border border-slate-700 text-xs text-white focus:outline-none focus:border-cyan-500">
+          </select>
+        </div>
       </div>
     </div>
-    <button id="btn-reiniciar" class="bg-red-900/40 border border-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-xs font-semibold transition-colors cursor-pointer-none">
+
+    <button id="btn-reiniciar" class="bg-red-900/40 border border-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-xs font-semibold transition-colors cursor-pointer shrink-0">
       Limpiar Todo el Horario
     </button>
   </header>
@@ -52,7 +62,7 @@
     </div>
 
     <div class="flex-1 p-4 md:p-6 overflow-x-auto md:overflow-y-auto h-full bg-slate-950 custom-scrollbar">
-      <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl min-w-[800px] md:min-w-0">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl min-w-[850px] md:min-w-0">
         
         <div class="grid grid-cols-6 bg-slate-800 text-center font-semibold text-xs text-slate-300 py-3 border-b border-slate-700 sticky top-0 z-10">
           <div>Hora</div>
@@ -85,7 +95,7 @@
     ];
     const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
     
-    // --- CONEXIÓN DIRECTA AL LOCALSTORAGE ---
+    // --- CONEXIÓN AL LOCALSTORAGE (Carga de estado inicial) ---
     let materiasAsignadas = {}; 
     const horarioGuardado = localStorage.getItem('horario_upiig');
     if (horarioGuardado) {
@@ -114,7 +124,7 @@
       cargarBancoMaterias(selector.value, e.target.value);
     });
 
-    // Limpiar Horario Completo
+    // Limpiar Horario Completo con confirmación
     document.getElementById('btn-reiniciar').addEventListener('click', () => {
       if(confirm("¿Seguro que quieres borrar todo tu horario actual?")) {
         materiasAsignadas = {};
@@ -123,7 +133,7 @@
       }
     });
 
-    // Actualizar filtros
+    // Actualizar el menú desplegable del filtro según los semestres reales
     function actualizarOpcionesFiltro(carrera) {
       filtroSemestre.innerHTML = '<option value="todos">Mostrar todos los semestres</option>';
       if (!carrera || !ofertaAcademica[carrera]) return;
@@ -205,7 +215,7 @@
               const infoMateria = JSON.parse(elementoOriginal.dataset.materiaInfo);
               materiasAsignadas[idCelda] = infoMateria;
               
-              // Guardar estado actual tras arrastrar exitosamente
+              // Guardar estado en LocalStorage tras arrastrar exitosamente
               localStorage.setItem('horario_upiig', JSON.stringify(materiasAsignadas));
               generarCuadricula();
             }
@@ -217,10 +227,10 @@
       });
     }
 
-    // Quitar materia individual
+    // Quitar materia individual y actualizar LocalStorage
     function quitarMateria(idCelda) {
       delete materiasAsignadas[idCelda];
-      localStorage.setItem('horario_upiig', JSON.stringify(materiasAsignadas)); // Sincroniza LocalStorage
+      localStorage.setItem('horario_upiig', JSON.stringify(materiasAsignadas)); 
       generarCuadricula();
     }
 
